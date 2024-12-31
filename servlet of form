@@ -1,0 +1,38 @@
+package test;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.GenericServlet;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebServlet;
+
+
+@WebServlet("/student")
+public class studentServlet extends GenericServlet {
+	private static final long serialVersionUID = 1L;
+       
+    
+	public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+	res.setContentType("text/html");
+	PrintWriter pw = res.getWriter();
+	
+	String name = req.getParameter("sname");
+	String address = req.getParameter("address");
+	String course = req.getParameter("course");
+	String gender = req.getParameter("Gender");
+	String fees = req.getParameter("fees");
+	
+	pw.print("Student Details");
+	pw.print(name);
+	pw.print(address);
+	pw.print(course);
+	pw.print(gender);
+	pw.print(fees);
+	
+	}
+
+}
