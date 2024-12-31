@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+form{
+border: 2px solid black;
+align-items:center;
+height:500px;
+width:500px;
+border-radius:20px;
+margin:50px;
+padding:20px;
+}
+</style>
+</head>
+
+<body>
+
+<form action="student" method="get">
+<h1>Student Registration </h1>
+<hr>
+<table>
+<tr>
+<td> Student Name : </td>
+<td> <input type="text" name="sname"></td>
+</tr>
+<tr>
+<td> Address : </td>
+<td> <input type="text" name="address"></td>
+</tr>
+<tr>
+<td> Course : </td>
+<td> <select name="course">
+<option value="Java Full Stack" name="course">Java Full Stack</option>
+<option value=" Python Full Stack " name="course"> Python Full Stack </option>
+<option value=" .Net Full Stack " name="course"> .Net Full Stack </option>
+<option value="Mern Stack " name="course">Mern Stack </option>
+</select></td>
+</tr>
+<tr>
+<td> Gender: </td>
+<td> <input type="radio" name="Gender" Value="Male">Male</td>
+<td> <input type="radio" name="Gender" Value="Female">Female</td>
+</tr>
+<tr>
+<td> Fees: </td>
+<td> <input type="number" name="fees" min="0" max="1000000"></td>
+</tr>
+<tr>
+<td> <input type="submit"></td>
+<td><input type="reset"></td>
+</tr>
+</table>
+</form>
+</body>
+</html>
