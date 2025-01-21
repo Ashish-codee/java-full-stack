@@ -1,0 +1,134 @@
+############################# App . Java 
+package com.ay.Spring_Core_06;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    public static void main( String[] args )
+    {
+        System.out.println( "Hello World!" );
+        
+         ApplicationContext context =   new ClassPathXmlApplicationContext("config.xml")  ;
+           StudentBean student  = (StudentBean) context.getBean("student1");
+        
+        System.out.println(student);
+    }
+}
+######################Student Bean .java
+package com.ay.Spring_Core_06;
+
+public class StudentBean {
+
+	private int studentId;
+	private String studentName;
+	private String studentAddress;
+	public int getStudentId() {
+		return studentId;
+	}
+	public void setStudentId(int studentId) {
+		this.studentId = studentId;
+	}
+	public String getStudentName() {
+		return studentName;
+	}
+	public void setStudentName(String studentName) {
+		this.studentName = studentName;
+	}
+	public String getStudentAddress() {
+		return studentAddress;
+	}
+	public void setStudentAddress(String studentAddress) {
+		this.studentAddress = studentAddress;
+	}
+	public StudentBean(int studentId, String studentName, String studentAddress) {
+		super();
+		this.studentId = studentId;
+		this.studentName = studentName;
+		this.studentAddress = studentAddress;
+	}
+	public StudentBean() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	@Override
+	public String toString() {
+		return "StudentBean [studentId=" + studentId + ", studentName=" + studentName + ", studentAddress="
+				+ studentAddress + "]";
+	}
+	
+	
+}
+
+##############################Config.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd"> 
+    <bean class="com.ay.Spring_Core_06.StudentBean" name="student1">
+    <property name="studentId">
+    <value>223344</value>
+    </property>
+    <property name="studentName">
+    <value>ABCDEF</value>
+    </property>
+    <property name="studentAddress">
+    <value>
+    	Delhi
+    </value>
+    </property>
+    </bean>
+    
+    
+    </beans>
+
+#################################POM.XML
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.ay</groupId>
+	<artifactId>Spring-Core-06</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>Spring-Core-06</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>5.2.3.RELEASE</version>
+		</dependency>
+		<!--
+		https://mvnrepository.com/artifact/org.springframework/spring-context -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>5.2.3.RELEASE</version>
+		</dependency>
+
+	</dependencies>
+</project>
+
+
