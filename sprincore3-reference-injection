@@ -1,0 +1,106 @@
+##############A.java
+package com.springcore.ref;
+
+public class A {
+	private int x;
+	private B ob;
+	public int getX() {
+		return x;
+	}
+	public void setX(int x) {
+		this.x = x;
+	}
+	public B getOb() {
+		return ob;
+	}
+	public void setOb(B ob) {
+		this.ob = ob;
+	}
+	public A() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	@Override
+	public String toString() {
+		return "A [x=" + x + ", ob=" + ob + "]";
+	}
+	
+}
+#################B.java
+package com.springcore.ref;
+
+public class B {
+private int y;
+
+public int getY() {
+	return y;
+}
+
+public void setY(int y) {
+	this.y = y;
+}
+
+public B(int y) {
+	super();
+	this.y = y;
+}
+public B() {
+	
+}
+
+
+@Override
+public String toString() {
+	return "B [y=" + y + "]";
+}
+
+	//B ob = new B();
+	
+}
+
+###############config.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd"> 
+   
+   <bean class="com.springcore.ref.B" name="bref">
+   <property name="y" value="90">
+   
+   </property>
+   
+   
+   </bean>
+   <bean class="com.springcore.ref.A" name="aref">
+   <property name="x" value="12"></property>
+   <property name="ob" >
+   <ref bean="bref"></ref>
+   </property>
+   </bean>
+</beans>
+
+################test.java
+package com.springcore.ref;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class Test1 {
+
+	public static void main(String[] args) {
+		ApplicationContext context = new ClassPathXmlApplicationContext("com/springcore/ref/config2.xml");
+		A temp = (A) context.getBean("aref");
+		System.out.println(temp.getX());
+		System.out.println(temp.getOb().getY());
+		System.out.println(temp);
+		
+	}
+}
+
+
+
