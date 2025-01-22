@@ -1,0 +1,51 @@
+################3Addition.java
+package com.ay.springcore_08;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class Test1 {
+public static void main(String[] args) {
+	
+	ApplicationContext context = new ClassPathXmlApplicationContext("config1.xml");
+	//Person p = (Person) context.getBean("person");
+	//System.out.print(p);
+	Addition add = (Addition) context.getBean("add");
+	add.sum();
+}
+}
+
+########################### Config.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd"> 
+   
+<bean class="com.ay.springcore_08.Addition" name="add">
+
+<constructor-arg value="12"/>
+<constructor-arg value="16"></constructor-arg>
+</bean>
+</beans>
+
+################### Test.java
+package com.ay.springcore_08;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class Test1 {
+public static void main(String[] args) {
+	
+	ApplicationContext context = new ClassPathXmlApplicationContext("config1.xml");
+	//Person p = (Person) context.getBean("person");
+	//System.out.print(p);
+	Addition add = (Addition) context.getBean("add");
+	add.sum();
+}
+}
+
+
