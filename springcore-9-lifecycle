@@ -1,0 +1,150 @@
+########Samosa.java
+package com.ay.springcore_09_1;
+public class Samosa {
+private double price;
+
+@Override
+public String toString() {
+	return "Samosa [price=" + price + "]";
+}
+public Samosa() {
+	super();
+	
+}
+public double getPrice() {
+	return price;
+}
+
+public void setPrice(double price) {
+	System.out.println("Setting Property");
+
+	this.price = price;
+}
+public void init() {
+	System.out.println("Inside init");
+}
+public void destroy() {
+	System.out.println("Inside destroy");
+
+}
+}
+####################Config.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd">
+<bean class="com.ay.springcore_09_1.Samosa" name="samosa1" init-method="init" destroy-method="destroy">
+<property name="price" value="12.0"></property>
+
+
+</bean>
+
+
+</beans>
+
+#########################Test4.java
+package com.ay.springcore_09_1;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
+
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class Test4 {
+
+	public static void main(String[] args) {
+		AbstractApplicationContext context = new ClassPathXmlApplicationContext("Config2.xml");
+		Samosa samosa = (Samosa) context.getBean("samosa1");
+		System.out.print(samosa);
+		
+		context.registerShutdownHook();
+		System.out.println("");
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
