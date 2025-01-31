@@ -1,0 +1,12 @@
+@Entity
+@Table
+@Id
+@GeneratedValue
+@Column
+@Transient
+@Temporal
+@lob
+@oneToone
+@OneToMany
+@ManyToOne
+@JoinColumn etc.
