@@ -10,3 +10,4 @@
 @OneToMany
 @ManyToOne
 @JoinColumn etc.
+@Embeddable
