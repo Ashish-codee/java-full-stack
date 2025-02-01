@@ -1,0 +1,146 @@
+address.java ###########################3
+package com.ay.Hibernate.Hibernate_1;
+
+import java.util.Date;
+
+import org.springframework.context.annotation.Lazy;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import jakarta.persistence.Transient;
+
+@Entity
+public class Address {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
+	private int addressId;
+	@Column(length = 50)
+	private String street;
+	@Column(length = 50)
+	private String city;
+	@Column(length = 50)
+	private boolean isOpen;
+	@Transient
+	private double x;
+	@Temporal(TemporalType.DATE)
+	private Date added_date;
+	@Lob
+	private byte[] image;
+	public int getAddressId() {
+		return addressId;
+	}
+	public void setAddressId(int addressId) {
+		this.addressId = addressId;
+	}
+	public String getStreet() {
+		return street;
+	}
+	public void setStreet(String street) {
+		this.street = street;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public boolean isOpen() {
+		return isOpen;
+	}
+	public void setOpen(boolean isOpen) {
+		this.isOpen = isOpen;
+	}
+	public double getX() {
+		return x;
+	}
+	public void setX(double x) {
+		this.x = x;
+	}
+	public Date getAdded_date() {
+		return added_date;
+	}
+	public void setAdded_date(Date added_date) {
+		this.added_date = added_date;
+	}
+	public byte[] getImage() {
+		return image;
+	}
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
+	public Address(int addressId, String street, String city, boolean isOpen, double x, Date added_date, byte[] image) {
+		super();
+		this.addressId = addressId;
+		this.street = street;
+		this.city = city;
+		this.isOpen = isOpen;
+		this.x = x;
+		this.added_date = added_date;
+		this.image = image;
+	}
+	public Address() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	
+	
+}
+
+hibernate-cfg.xml ###################################3
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC 
+    "-//Hibernate/Hibernate Configuration DTD 3.0//EN" 
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+
+
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/myhiber</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">ashish</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+        <mapping class="com.ay.Hibernate.Hibernate_1.Student" />
+        <mapping class="com.ay.Hibernate.Hibernate_1.Address" />
+        
+    </session-factory>
+</hibernate-configuration>
+
+fetchdemo.java ########################
+package com.ay.Hibernate.Hibernate_1;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class FetchDemo {
+public static void main(String[] args) {
+	  SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+      
+      System.out.println("Hibernate SessionFactory created successfully!");
+      
+      Session session = factory.openSession();
+      Address ad  = (Address) session.get(Address.class, 1);
+      Address ad1  = (Address) session.load(Address.class, 2);
+
+      System.out.println(ad.getCity());
+      System.out.println(ad1.getStreet());
+
+      factory.close();
+
+}
+}
+
+
